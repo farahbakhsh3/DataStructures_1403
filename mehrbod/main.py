@@ -26,7 +26,7 @@ def calc_time(func, epoch:int = 10) -> int:
         func(arr, arr[-1])
         stop = time.time_ns()
         total_time += stop - start
-    return total_time / 10
+    return total_time / epoch
 
 
 if __name__ == "__main__":
