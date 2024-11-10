@@ -1,34 +1,33 @@
 import time
+import random
 
-def normal_search(arr:list[int], num:int) -> int:
-    for i,x in enumerate(arr):
-        if x == num:
-            return i
+def linear_search(nums, s):
+    for a in nums:
+        if a == s:
+            return True
     return -1
 
-def binary_search(arr:list[int], num:int) -> int:
-    low, high = 0, len(arr)-1
+def binary_search(nums, s):
+    n = len(nums)
+    low = 0
+    high = n - 1
     while low <= high:
         mid = (high + low) // 2
-        if arr[mid] == num:
-            return mid
-        elif arr[mid] > num:
+        if nums[mid] == s:
+            return True
+
+        if nums[mid] > s:
             high = mid - 1
-        elif arr[mid] < num:
+        elif nums[mid] < s:
             low = mid + 1
     return -1
 
-def calc_time(func, epoch:int = 10) -> int:
-    total_time = 0
-    for _ in range(epoch):
-        arr = [i for i in range(1000000)]
-        start = time.time_ns()
-        func(arr, arr[-1])
-        stop = time.time_ns()
-        total_time += stop - start
-    return total_time / epoch
+nums = list(range(1000000))
 
+start = time.time()
+print(linear_search(nums=nums, s=random.choice(nums)))
+print(time.time() - start)
 
-if name == "main":
-    print(f"normal search: {calc_time(normal_search)}ns")
-    print(f"binary search: {calc_time(binary_search)}ns")
+start = time.time()
+print(binary_search(nums=nums, s=random.choice(nums)))
+print(time.time() - start)
