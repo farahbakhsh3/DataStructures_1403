@@ -1,5 +1,3 @@
-import re
-
 class Stack:
     def __init__(self) -> None:
         self._array = []
@@ -51,13 +49,13 @@ def add_parentheses(exp:str) ->str:
 
     return output[0]
 
-def toPrefix(phrase:str) -> str:
-    phrase = add_parentheses(phrase)
+def toPrefix(exp:str) -> str:
+    exp = add_parentheses(exp)
     stack = Stack()
     array = []
-    i = len(phrase) - 1
+    i = len(exp) - 1
     while i >= 0:
-        char = phrase[i]
+        char = exp[i]
         if char in ")+-*/":
             stack.push(char)
         elif char != '(':
@@ -70,11 +68,11 @@ def toPrefix(phrase:str) -> str:
         i -= 1
     return "".join(array)
 
-def toPostfix(phrase:str) -> str:
-    phrase = add_parentheses(phrase)
+def toPostfix(exp:str) -> str:
+    exp = add_parentheses(exp)
     stack = Stack()
     array = []
-    for char in phrase:
+    for char in exp:
         if char in "(+-*/":
             stack.push(char)
         elif char != ')':
